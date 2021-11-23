@@ -1,37 +1,28 @@
-def autopsword()->str:
-    """automaatseltloomatud parool
-    """
-    str0=".,:;!_*-+()/#¤%&"
-    str1 = "0123456789"
+import random
+def passauto()->str:
+    str0 = ""
+    str1 = "123456789"
     str2 = "qwertyuiopasdfghjklzxcvbnm"
     str3 = str2.upper()
-    #print(str3) # 'QWERTYUIOPASDFGHJKLZXCVBNM'
-    str4 = str0+str1+str2+str3 
-    ls = list(str4) 
-    shuffle(ls) 
-    psword = "".join([choice(ls) for x in range(12)]) # Извлекаем из списка 12 произвольных значений
-    # 
-    return psword
-def pswordcheck(psword:str)->bool:
-    digit="d"
-    alpha="a"
-    upper="e"
-    lower="f"
-    symbl="w"
-    psword=list(psword)
-    for i in psword:
-        if i.isdigit()== True: #string index out of range
-            digit="True"
-        if i.isalpha()== True:
-            alpha="True"
-        if i.isupper()== True:
-            upper="True"
-        if i.islower()==True:
-            lower="True"
-        if i in [".","_","/","@"]:
-            symbl="True"
-    if digit=="True" and upper=="True" and alpha=="True" and lower=="True" and symbl=="True": 
-        ans=True
+    print(str3)
+    str4 = str0+str1+str2+str3
+    print(str4)
+    ls = list(str4)
+    print(ls)
+    random.shuffle(ls)
+    print(ls)
+    psword = ''.join([random.choice(ls) for x in range(12)])
+    return(psword)
+def passcontrol(pswrd:str)->bool:
+    ls=list(psword)
+    for e in ls:
+        if e.isdigit(): d=True
+        if e.isalpha(): a=True
+        if e.isupper(): u=True
+        if e.islower(): l=True
+        if e in [".","_","/","@"]: s=True
+    if d==True and a==True and u==True and l==True and s==True and t==True:
+       t=True
     else:
-        ans=False
-    return ans
+        t=False
+    return t      

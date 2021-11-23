@@ -1,70 +1,57 @@
 from module1 import*
-print("Regestreerimne ja Autoriseerimine".center(50,"+"))
 users=["Andrei"]
-pswords=["12345"]
+passwords=["12345"]
+password=passauto()
+print(password)
 while True:
-    sign=input("Regestreerimne- R, Autoriseerimine- A, Välja- E")
-    if sign.upper()=="R":
-        log=input("Login: ")
-        pswrd1=input("sulle valida automaatne parooli? Y- jah, N- ei")
-        if pswrd1.upper()=="Y":
-            psword=autopsword()
-            print("sinu parool: "+psword)
-            pswords.append(psword) #dobovlayem k spisku
-            if log not in users:
-                users.append(log)
-        elif pswrd1.upper()=="N":
-            psword=""
-            while len(psword)!=12:
-               try:
-                   psword=input("Siseta parool 12 sümboolid suurus: ")
-               except:
-                    ValueError
-            if ans != True:
-                print ("Parool ei sobi")
-            else:
-                print("Regestreerimne on edukas")
-                users.append(log)
-                pswords.append(psword)
-
-    elif sign.upper()=="A":
-        login=input("Siseta login: ")
-        if login not in users:
-            print("Kasutaja ei ole olema")
-            print("Kas sa tahad regestreerida?")
-            reg=input("Y= jah, N= ei")
-            if reg.upper() =="Y":
-                log=input("Login: ")
-                pswrd1=input("sulle valida automaatne parooli? Y- jah, N- ei")
-                if pswrd1.upper()=="Y":
-                    psword=autopsword()
-                    print("sinu parool: "+psword)
-                    pswords.append(psword) 
-                    if log not in users:
-                        users.append(log)
-                elif pswrd1.upper()=="N":
-                    psword=""
-                    while len(psword)!=12:
-                       try:
-                           psword=input("Siseta parool 12 sümboolid suurus: ")
-                       except:
-                            ValueError
-                    ans=psword_check(psword) 
-                    if ans != True:
-                        print ("Parool ei sobi")
-                    else:
-                        print("Regestreerimne on edukas")
-                        users.append(log)
-                        pswords.append(psword)
-            else:
-                pass
+    print("Regestreerimine - 1, Autriseerimine - 2, Välja - 3")
+    v=int(input())
+    if v==1:
+        login=input("Sisestage nimi: ")
+        pswrd=input("Sisestage salasõnu: ")
+        pswrd=""
+        while len(pswrd)>12:
+            try:
+                pswrd=input("Sisesta salasõna: ")
+            except:
+                ValueError
+        t=passcontrol(pswrd)
+        if t!=True:
+            print("Salasõna ei sobib.") 
         else:
-            psword=input("Siseta parool: ")
-            if psword not in pswords:
-                print("Vale parool")
-            else:
-                print("Autoriseerimine on edukas")
-    elif sign.upper()=="E":
+            print("Salasõna sobib, regestreerimine lõpub.")
+    elif v==2:
+        login=input("Sisesta nimi: ")
+        if login not in users:
+            print("Viga! Soovite registreeruda?")
+            reg=input("1 - Jah, 2 - Ei.")
+            if reg==1:
+                login=input("Sisestage nimi: ")
+                pswrd=input("Sisestage salasõnu: ")
+                pswrd=""
+                while len(pswrd)>12:
+                    try:
+                        pswrd=input("Sisesta salasõna: ")
+                    except:
+                            ValueError
+                            ans=passcontrol(pswrd)
+                            if t!=True:
+                                print("Salasõna ei sobib.") 
+                            else:
+                                print("Salasõna sobib, regestreerimine lõpub.")
+                                users.append(login)
+                                passwords.append(pswrd)
+                    else:
+                        pass
+                else:
+                    pswrd="Sisestage salasõna: "
+
+                    if pswrd not in passwords:
+                        print("Vale salasõna")
+                    else:
+                        print("Autoriseerimine lõpeb.")
+    elif v==3:
+        print("Head aega!")
         break
     else:
-        print("See funktsioon ei ole")
+        print("On vaja valida 1,2 või 3.")
