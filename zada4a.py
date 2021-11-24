@@ -9,7 +9,6 @@ while True:
     if v==1:
         login=input("Sisestage nimi: ")
         pswrd=input("Sisestage salasõnu: ")
-        pswrd=""
         while len(pswrd)>12:
             try:
                 pswrd=input("Sisesta salasõna: ")
@@ -20,36 +19,35 @@ while True:
             print("Salasõna ei sobib.") 
         else:
             print("Salasõna sobib, regestreerimine lõpub.")
+            users.append(login)
+            passwords.append(pswrd)
     elif v==2:
         login=input("Sisesta nimi: ")
-        if login not in users:
+        if login in users:
+            pswrd=input("Sisestage salasõna: ")
+            if pswrd not in passwords:
+                print("Vale salasõna")
+            else:
+                print("Autoriseerimine lõpub")
+        else:
             print("Viga! Soovite registreeruda?")
             reg=input("1 - Jah, 2 - Ei.")
-            if reg==1:
-                login=input("Sisestage nimi: ")
-                pswrd=input("Sisestage salasõnu: ")
-                pswrd=""
-                while len(pswrd)>12:
-                    try:
-                        pswrd=input("Sisesta salasõna: ")
-                    except:
-                            ValueError
-                            ans=passcontrol(pswrd)
-                            if t!=True:
-                                print("Salasõna ei sobib.") 
-                            else:
-                                print("Salasõna sobib, regestreerimine lõpub.")
-                                users.append(login)
-                                passwords.append(pswrd)
-                    else:
-                        pass
-                else:
-                    pswrd="Sisestage salasõna: "
-
-                    if pswrd not in passwords:
-                        print("Vale salasõna")
-                    else:
-                        print("Autoriseerimine lõpeb.")
+            if reg=="1":
+               login=input("Sisestage nimi: ")
+        pswrd=input("Sisestage salasõnu: ")
+        while len(pswrd)>12:
+            try:
+                pswrd=input("Sisesta salasõna: ")
+            except:
+                ValueError
+        t=passcontrol(pswrd)
+        if t!=True:
+            print("Salasõna ei sobib.") 
+        else:
+            print("Salasõna sobib, regestreerimine lõpub.")
+            users.append(login)
+            passwords.append(pswrd)
+            break
     elif v==3:
         print("Head aega!")
         break
