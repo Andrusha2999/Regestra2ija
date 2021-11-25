@@ -1,6 +1,7 @@
+from toofail import*
 from module1 import*
-users=["Andrei"]
-passwords=["12345"]
+users=loe_failist_listisse("TextFile2.txt")
+passwords=loe_failist_listisse("TextFile3.txt")
 password=passauto()
 print(password)
 while True:
@@ -29,9 +30,13 @@ while True:
                 print("Vale salasõna")
             else:
                 print("Autoriseerimine lõpub")
+                break
         else:
             print("Viga! Soovite registreeruda?")
             reg=input("1 - Jah, 2 - Ei.")
+            if reg=="2":
+                print("Välja!")
+                break
             if reg=="1":
                login=input("Sisestage nimi: ")
         pswrd=input("Sisestage salasõnu: ")
@@ -47,9 +52,8 @@ while True:
             print("Salasõna sobib, regestreerimine lõpub.")
             users.append(login)
             passwords.append(pswrd)
-            break
     elif v==3:
-        print("Head aega!")
+        print("Head aega! ")
         break
     else:
         print("On vaja valida 1,2 või 3.")
